@@ -1,0 +1,23 @@
+{
+  "name": "dummy-i18n-server",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "node src/index.js",
+    "start": "concurrently \"nodemon --watch src src/index.js\" \"live-server dist --cors\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Metin Arslanturk",
+  "license": "ISC",
+  "devDependencies": {
+    "live-server": "^1.2.1",
+    "nodemon": "^2.0.15"
+  },
+  "dependencies": {
+    "concurrently": "^7.0.0",
+    "fs-extra": "^10.0.0",
+    "short-uuid": "^4.2.0"
+  }
+}
