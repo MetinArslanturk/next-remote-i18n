@@ -5,7 +5,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "custom-server": "NODE_ENV=production node server.js"
   },
   "dependencies": {
     "hoist-non-react-statics": "^3.3.2",

@@ -8,7 +8,7 @@ const config = JSON.parse(fs.readFileSync('config.json'));
 const distExists = fs.existsSync('dist');
 
 if (distExists) {
-    fs.rmSync('dist', { recursive: true, force: true });
+    // fs.rmSync('dist', { recursive: true, force: true });
 }
 const deployID = shortUUID.generate();
 

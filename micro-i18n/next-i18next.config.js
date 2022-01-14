@@ -6,7 +6,8 @@ module.exports = {
       localePath: 'public/static/locales',
       localeStructure: '{{lng}}/{{ns}}',
       app: 'webx/marketing',
-      allTranslations: ['common', 'second']
+      allTranslations: ['common', 'second'],
+      lastDeployID: '2rxUyheiNPRbLynd2xtNr8',
     }
   };
   

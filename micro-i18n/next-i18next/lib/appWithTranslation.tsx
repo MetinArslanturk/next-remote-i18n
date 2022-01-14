@@ -46,7 +46,7 @@ export const appWithTranslation = (
         return i18nModule.createInstance({ lng: locale, ...i18nConf });
       }
 
-      let { userConfig } = _nextI18Next
+      let userConfig = i18nConfig
       const { initialI18nStore } = _nextI18Next
 
 

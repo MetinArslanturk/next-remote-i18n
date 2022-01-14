@@ -6,9 +6,7 @@ import { globalI18n } from './appWithTranslation'
 import { UserConfig, SSRConfig } from './types'
 import { FallbackLng } from 'i18next'
 
-
 let globalLastDeployId : string = '';
-let globalLastUpdateDate = 0;
 
 const getFallbackLocales = (fallbackLng: false | FallbackLng) => {
   if (typeof fallbackLng === 'string') {
@@ -60,20 +58,24 @@ export const serverSideTranslations = async (
     await globalI18n?.reloadResources()
   }
 
-  const translationMetadata = await fetch(`${process.env.NEXT_PUBLIC_TRANSLATIONS_HOST}/metadata.json`).then((res) => res.json());
-  let reInit = false;
 
-  if (globalLastDeployId !== translationMetadata.last_deploy_id) {
+  let reInit = false;  
+
+
+  if (!globalLastDeployId || globalLastDeployId !== process.env.newKey) {
     reInit = true;
-    globalLastDeployId = translationMetadata.last_deploy_id;
-    globalLastUpdateDate = translationMetadata.last_update_date;
+    // @ts-ignore
+    globalLastDeployId = process.env.newKey || i18Config.i18n.lastDeployID;
   }
-  
 
-  const { i18n, initPromise } = createClient({
-    ...config,
-    lng: initialLocale,
-  }, globalLastDeployId, reInit)
+  const { i18n, initPromise } = createClient(
+    {
+      ...config,
+      lng: initialLocale,
+    },
+    globalLastDeployId,
+    reInit
+  );
 
   await initPromise;
 
@@ -102,10 +104,8 @@ export const serverSideTranslations = async (
   return {
     _nextI18Next: {
       initialI18nStore,
-      userConfig: config.serializeConfig ? userConfig : null,
     },
-    translationDeployId: globalLastDeployId,
-    translationLastUpdateDate: globalLastUpdateDate,
+    translationDeployId: globalLastDeployId
 
   }
 }

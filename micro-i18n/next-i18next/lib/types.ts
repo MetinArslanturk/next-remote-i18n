@@ -52,10 +52,8 @@ export type CreateClientReturn = {
 export type SSRConfig = {
   _nextI18Next: {
     initialI18nStore: any
-    userConfig: UserConfig | null
   },
   translationDeployId?: string,
-  translationLastUpdateDate?: number,
 
 }
 
